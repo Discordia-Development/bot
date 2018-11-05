@@ -1,0 +1,23 @@
+{
+  "name": "wikibot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/wikibot.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "author": "OGNovuh",
+  "dependencies": {
+    "@sentry/node": "^4.1.1",
+    "discord.js": "github:discordjs/discord.js#21999fa4a0f392ebc7ac8e5a5c1aa73879e0d49d",
+    "dotenv": "^6.0.0",
+    "enmap": "^4.2.3",
+    "fs-nextra": "^0.3.7",
+    "hastebin.js": "^0.6.0",
+    "ioredis": "^4.2.0",
+    "klaw": "^3.0.0",
+    "node-fetch": "^2.2.0",
+    "snekfetch": "^3.6.4",
+    "superagent": "^4.0.0-beta.5"
+  }
+}
