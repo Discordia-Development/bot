@@ -11,7 +11,7 @@ class Locale extends Command {
     const key = 'locale';
 
     const userSettings = await this.client.userSettings.get(message.author.id);
-    settings[key] = newLocale;
+    userSettings[key] = newLocale;
     await this.client.userSettings.set(message.author.id, userSettings);
 
     message.reply(`I've set your locale to \`${newLocale}\`.`);
