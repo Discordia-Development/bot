@@ -28,7 +28,7 @@ class Article extends Command {
 
     const { locale } = this.client.userSettings.get(message.author.id);
 
-    if (locale !== 'en-US') {
+    if (locale.toString() !== 'en-US') {
       const lang = locale.split('-');
       const finalArticle = article.toLowerCase();
       const url = `https://github.com/WumpusPrime/The-Unofficial-Discord-Wiki/blob/master/${lang}/${finalArticle}.md`;
