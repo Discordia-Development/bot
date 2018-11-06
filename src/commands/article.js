@@ -29,7 +29,7 @@ class Article extends Command {
     const { locale } = this.client.userSettings.get(message.author.id);
 
     if (locale !== 'en-US') {
-      const lang = locale.split('-');
+      const lang = locale.split('-')[0];
       const finalArticle = article.toLowerCase();
       const url = `https://github.com/WumpusPrime/The-Unofficial-Discord-Wiki/blob/master/${lang}/${finalArticle}.md`;
       const returnArticle = `https://discordia.me/${lang}/${finalArticle}`;
