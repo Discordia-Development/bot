@@ -1,8 +1,8 @@
 # Files
 src/config.js
 src/.env
+src/commands/Administrative/trello.js
 
 # Folders
 node_modules
 src/data
-src/commands/Administrative
