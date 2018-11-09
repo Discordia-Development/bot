@@ -19,6 +19,7 @@ module.exports = (client) => {
   });
 
   process.on('unhandledRejection', err => {
+    client.sentry.captureException(err);
     console.error('Uncaught Promise Error: ', err);
   });
 };
