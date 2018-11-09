@@ -32,7 +32,7 @@ class Wikibot extends Client {
     
     this.settings = new Enmap({ name: 'settings', dataDir: './src/data/guilds' });
 
-    this.sentry = Sentry.init('https://2645fe786fa34611b69b1b411b5cbcaa@sentry.io/1305755');
+    this.sentry = Sentry.init({ dsn: 'https://2645fe786fa34611b69b1b411b5cbcaa@sentry.io/1305755' });
 
     this.util = {
       haste: new Haste()
