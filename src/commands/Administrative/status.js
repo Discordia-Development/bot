@@ -13,3 +13,5 @@ class Status extends Command {
     message.reply(`I've set my status to \`${args.join(' ')}\`.`);
   }
 }
+
+module.exports = Status;

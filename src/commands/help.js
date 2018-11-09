@@ -12,13 +12,7 @@ class Help extends Command {
     });
   }
 
-  async run(message, args, level) {
-    // if (!args[0]) {
-    //   const settings = this.client.settings.get(message.guild.id);
-
-    //   const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.])
-    // }
-    
+  async run(message, args, level) {    
     if (!args[0]) {
       const settings = message.settings;
       
@@ -37,6 +31,7 @@ class Help extends Command {
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
+      await message.delete({ timeout: 5000 });
       message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
     } else {
       let command = args[0];
@@ -44,6 +39,7 @@ class Help extends Command {
         command = this.client.commands.get(command);
         if (level < this.client.levelCache[command.conf.permLevel]) return;
         message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\nalises:: ${command.conf.aliases.join(', ')}`, {code:'asciidoc'});
+        await message.delete({ timeout: 5000 });
       }
     }
   }

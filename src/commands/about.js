@@ -16,6 +16,7 @@ class About extends Command {
       .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
       .setTimestamp();
     message.channel.send({ embed });
+    await message.delete({ timeout: 5000 });
   }
 }
 

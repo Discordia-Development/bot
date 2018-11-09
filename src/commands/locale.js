@@ -15,6 +15,7 @@ class Locale extends Command {
     await this.client.userSettings.set(message.author.id, userSettings);
 
     message.reply(`I've set your locale to \`${newLocale}\`.`);
+    await message.delete({ timeout: 5000 });
   }
 }
 
