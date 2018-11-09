@@ -13,6 +13,7 @@ module.exports = (client) => {
   };
 
   process.on('uncaughtException', (err) => {
+    client.sentry.captureException(err);
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
     console.error('Uncaught Exception: ', errorMsg);
     process.exit(1);
