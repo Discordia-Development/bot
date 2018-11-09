@@ -30,9 +30,9 @@ class Help extends Command {
           currentCategory = cat;
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
-      });
-      await message.delete({ timeout: 5000 });
+      });      
       message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
+      await message.delete({ timeout: 5000 });
     } else {
       let command = args[0];
       if (this.client.commands.has(command)) {
