@@ -19,7 +19,7 @@ class Prefix extends Command {
       message.channel.startTyping();
       const response = await this.client.awaitReply(message, 'Would you like to reset the prefix or set a new prefix?');
       message.channel.stopTyping();
-      await message.delete({ timeout: 5000 });
+      await message.delete();
 
       if (newPrefix.includes(response)) {
         const res = await this.client.awaitReply(message, 'What would you like the new prefix to be?');
