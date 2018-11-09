@@ -1,3 +1,5 @@
+const Sentry = require('@sentry/node');
+
 module.exports = (client) => {
   client.wait = require('util').promisify(setTimeout);
   
@@ -12,15 +14,15 @@ module.exports = (client) => {
     }
   };
 
-  process.on('uncaughtException', (client, err) => {
-    client.sentry.captureException(err);
+  process.on('uncaughtException', (err) => {
+    Sentry.captureException(err);
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
     console.error('Uncaught Exception: ', errorMsg);
     process.exit(1);
   });
 
-  process.on('unhandledRejection', (client, err) => {
-    client.sentry.captureException(err);
+  process.on('unhandledRejection', (err) => {
+    Sentry.captureException(err);
     console.error('Uncaught Promise Error: ', err);
   });
 };

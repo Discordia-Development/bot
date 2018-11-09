@@ -19,6 +19,7 @@ require('./modules/Prototypes.js');
 class Wikibot extends Client {
   constructor(options) {
     super(options);
+    Sentry.init({ dsn: 'https://2645fe786fa34611b69b1b411b5cbcaa@sentry.io/1305755' });
     
     this.config = require('./config.js');
     
@@ -31,8 +32,6 @@ class Wikibot extends Client {
     this.userPrefixes = new Enmap({ name: 'userPrefixes', dataDir: './src/data/users/prefixes'});
     
     this.settings = new Enmap({ name: 'settings', dataDir: './src/data/guilds' });
-
-    this.sentry = Sentry.install({ dsn: 'https://2645fe786fa34611b69b1b411b5cbcaa@sentry.io/1305755' });
 
     this.util = {
       haste: new Haste()
