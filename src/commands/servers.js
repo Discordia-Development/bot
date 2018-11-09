@@ -34,7 +34,7 @@ class Servers extends Command {
       .setDescription(`${list}\n\nCan't find what you're looking for? Ask for help [here](https://discord.gg/ZRJ9Ghh)!`)
       .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
       .setTimestamp()
-      .setColor(0x7289DA)
+      .setColor(0x4A90E2)
       .send();
     await message.delete({ timeout: 5000 });
   }

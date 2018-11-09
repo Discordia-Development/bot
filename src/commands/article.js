@@ -21,7 +21,7 @@ class Article extends Command {
 
     if (!article) { 
       message.buildEmbed()
-        .setColor(0x7289DA)
+        .setColor(0x4A90E2)
         .setTitle('Popular Articles')
         .setDescription(pageList.map(a => `[${a[1]}](${a[2]})`).slice(0, 5).join('\n') + '\n\nCan\'t find what you\'re looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!')
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
