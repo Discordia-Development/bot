@@ -12,14 +12,14 @@ module.exports = (client) => {
     }
   };
 
-  process.on('uncaughtException', (err) => {
+  process.on('uncaughtException', (client, err) => {
     client.sentry.captureException(err);
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
     console.error('Uncaught Exception: ', errorMsg);
     process.exit(1);
   });
 
-  process.on('unhandledRejection', err => {
+  process.on('unhandledRejection', (client, err) => {
     client.sentry.captureException(err);
     console.error('Uncaught Promise Error: ', err);
   });
