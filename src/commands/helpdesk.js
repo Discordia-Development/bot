@@ -19,8 +19,8 @@ class Helpdesk extends Command {
 
     if (!match) {
       message.buildEmbed()
-        .setTitle('Invaid Query')
-        .setDescription('Please provide a valid search query to search on the HelpDesk. `wikibot, helpdesk <query>`')
+        .setTitle('Invalid Query')
+        .setDescription('Please provide a valid search query to search on the Helpdesk. `wikibot, helpdesk <query>`')
         .setColor(0x99AAB5)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
@@ -45,7 +45,7 @@ class Helpdesk extends Command {
 
         if (!top.length) {
           message.buildEmbed()
-            .setTitle('Discord HelpDesk : No Results')
+            .setTitle('Discord Helpdesk: No Results')
             .setDescription(`No results came back from the query **${query.length > 40 ? query.substring(0, 36) + '...' : query}**.\n\nCan't find what you're looking for? Try tweeting [@discordapp](https://twitter.com/discordapp) or emailing [support@discordapp.com](https://support.discordapp.com/hc/en-us/requests/new)!`)
             .setColor(0x4A90E2)
             .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
@@ -54,7 +54,7 @@ class Helpdesk extends Command {
         } 
 
         const embed = new MessageEmbed()
-          .setTitle('Discord HelpDesk : Top Results')
+          .setTitle('Discord Helpdesk: Top Results')
           .setDescription(`${list}\n\nCan't find what you're looking for? Try tweeting [@discordapp](https://twitter.com/discordapp) or emailing [support@discordapp.com](https://support.discordapp.com/hc/en-us/requests/new)!`)
           .setColor(0x4A90E2)
           .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png');
@@ -65,7 +65,7 @@ class Helpdesk extends Command {
       });
     } else {
       const embed = new MessageEmbed()
-        .setTitle('Discord HelpDesk : Top Results')
+        .setTitle('Discord Helpdesk: Top Results')
         .setDescription(`${cachedQuery}\n\nCan't find what you're looking for? Try tweeting [@discordapp](https://twitter.com/discordapp) or emailing [support@discordapp.com](https://support.discordapp.com/hc/en-us/requests/new)!`)
         .setColor(0x4A90E2)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png');
