@@ -12,6 +12,8 @@ const readdir = promisify(require('fs').readdir);
 const klaw = require('klaw');
 const path = require('path');
 const ArticleManager = require('./models/ArticleManager.js');
+const LanguageHandler = require('./modules/LanguageHandler.js');
+
 
 require('./modules/Prototypes.js');
 
@@ -26,7 +28,9 @@ class Wikibot extends Client {
     this.commands = new Collection();
     this.aliases = new Collection();
     this.redis = new Redis();
+    
     this.articleManager = new ArticleManager();
+    this.languageHandler = new LanguageHandler();
 
     this.userSettings = new Enmap({ name: 'userSettings', dataDir: './src/data/users/settings' });
     this.userPrefixes = new Enmap({ name: 'userPrefixes', dataDir: './src/data/users/prefixes'});

@@ -31,6 +31,7 @@ class Article extends Command {
     const { locale } = this.client.userSettings.get(message.author.id);
 
     if (locale !== 'en-US') {
+      const articleFound = await this.client.languageHandler.getString(this.client, message.author.id, 'articleFound');
       const lang = locale.split('-')[0];
       const finalArticle = article.toLowerCase();
       const url = `https://github.com/WumpusPrime/The-Unofficial-Discord-Wiki/blob/master/${lang}/${finalArticle}.md`;
@@ -49,7 +50,7 @@ class Article extends Command {
           message.buildEmbed()
             .setColor(0x4A90E2)
             .setTitle('Your Requested Article')
-            .setDescription(`The article **${article}** can be found at ${returnArticle}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`${this.client.settings.get(message.guild.id).prefix}language set fr-FR\`.`)
+            .setDescription(`${articleFound.replace('<article>', article).replace('<link>', returnArticle).replace('<languages>', 'es-ES').replace('<wiki>', '[here](https://discord.gg/ZRJ9Ghh)')}`)
             .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
             .send();
           message.delete({ timeout: 5000 });
