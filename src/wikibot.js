@@ -11,9 +11,9 @@ const Enmap = require('enmap');
 const readdir = promisify(require('fs').readdir);
 const klaw = require('klaw');
 const path = require('path');
+
 const ArticleManager = require('./models/ArticleManager.js');
 const LanguageHandler = require('./modules/LanguageHandler.js');
-
 
 require('./modules/Prototypes.js');
 
