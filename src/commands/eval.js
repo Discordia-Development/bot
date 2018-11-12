@@ -12,7 +12,7 @@ class Eval extends Command {
       usage: 'eval <expression:string>',
       extended: 'This is an extremely dangerous command, use with caution and never eval stuff strangers tell you.',
       aliases: ['ev'],
-      permLevel: 'Bot Owner'
+      permLevel: 'Bot Admin'
     });
   }
 
