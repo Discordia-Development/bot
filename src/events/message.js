@@ -33,13 +33,7 @@ module.exports = class {
     // The "level" command module argument will be deprecated in the future.
     message.author.permLevel = level;
 
-    if (level < this.client.levelCache[cmd.conf.permLevel]) {
-      if (settings.systemNotice === 'true') {
-        return message.channel.send(`You do not have permission to use this command. Your permission level is ${level} (${this.client.config.permLevels.find(l => l.level === level).name}) This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
-      } else {
-        return;
-      }
-    }
+    if (level < this.client.levelCache[cmd.conf.permLevel]) return;
 
     message.flags = [];
     while (args[0] && args[0][0] === '-') {
