@@ -50,7 +50,7 @@ class Article extends Command {
           message.buildEmbed()
             .setColor(0x4A90E2)
             .setTitle('Your Requested Article')
-            .setDescription(`${articleFound.replace('<article>', article).replace('<link>', returnArticle).replace('<languages>', 'es-ES').replace('<wiki>', '[here](https://discord.gg/ZRJ9Ghh)')}`)
+            .setDescription(`${articleFound.replace('<article>', article).replace('<link>', returnArticle).replace('<languages>', locale).replace('<wiki>', '[here](https://discord.gg/ZRJ9Ghh)')}`)
             .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
             .send();
           message.delete({ timeout: 5000 });

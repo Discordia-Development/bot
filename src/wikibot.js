@@ -38,7 +38,7 @@ class Wikibot extends Client {
     this.settings = new Enmap({ name: 'settings', dataDir: './src/data/guilds' });
 
     this.util = {
-      haste: new Haste()
+      haste: new Haste({ dev: true })
     };
   }
   

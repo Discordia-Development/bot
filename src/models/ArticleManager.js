@@ -11,7 +11,7 @@ class ArticleManager {
     await request.get(url).end((err, res) => {
       if (err) {
         console.error('Could not fetch articles');
-        process.exit();
+        // process.exit();
       }
       return this.data = res.text;
     });
