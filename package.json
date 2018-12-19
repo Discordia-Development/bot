@@ -18,7 +18,6 @@
     "ioredis": "^4.2.0",
     "klaw": "^3.0.0",
     "node-fetch": "^2.2.0",
-    "snekfetch": "^3.6.4",
-    "superagent": "^4.0.0-beta.5"
+    "snekfetch": "^3.6.4"
   }
 }

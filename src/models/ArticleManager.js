@@ -1,6 +1,6 @@
-const request = require('superagent');
+const fetch = require('node-fetch');
 
-const url = 'https://raw.githubusercontent.com/WumpusPrime/wiki/master/pages.md';
+const url = 'https://raw.githubusercontent.com/WumpusPrime/wiki/master/meta/featured.md';
 
 class ArticleManager {
   constructor() {
@@ -8,12 +8,8 @@ class ArticleManager {
   }
 
   async load() {
-    await request.get(url).end((err, res) => {
-      if (err) {
-        console.error('Could not fetch articles');
-        // process.exit();
-      }
-      return this.data = res.text;
+    await fetch(url).then(res => {
+      return this.data = res.text();
     });
   }
 }

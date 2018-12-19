@@ -1,85 +1,99 @@
-const Command = require('../lib/structures/Command.js');
+const Command = require('../lib/structures/Command');
 const fetch = require('node-fetch');
+const fuse = require('fuse.js');
 
 const matchAll = require('../util/matchAll');
 
 class Article extends Command {
   constructor(client) {
     super(client, {
-      name: 'article',
-      description: 'Search for an article.',
-      category: 'System',
-      usage: '[article:args]',
-      permLevel: 'User'
+      name: 'article'
     });
   }
 
-  async run(message, args) {
+  async run(message, args, level) {
+    const options = {
+      id: 'name',
+      keys: ['name']
+    };
+
     const article = args.join(' ');
+
     const data = await this.client.articleManager.data;
     const pageList = await matchAll(data, /\*\s\[([a-zA-Z0-9_-\s]+)\]\(\/([a-zA-Z0-9_-]+)\)(?:\s+<!--\s*(.+)\s*-->)?/gi);
 
-    if (!article) { 
+    if (!article) {
       message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Popular Articles')
-        .setDescription(pageList.map(a => `[${a[1]}](${a[2]})`).slice(0, 5).join('\n') + '\n\nCan\'t find what you\'re looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!')
+        .setDescription(pageList.map(a => `[${a[1]}](https://discordia.me/${a[2]})`).slice(0, 5).join('\n') + '\n\nCan\'t find what you\'re looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!')
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
       return await message.delete({ timeout: 5000 });
     }
-    const { locale } = this.client.userSettings.get(message.author.id);
+
+    const { locale } = await this.client.userSettings.get(message.author.id);
 
     if (locale !== 'en-US') {
-      const articleFound = await this.client.languageHandler.getString(this.client, message.author.id, 'articleFound');
-      const lang = locale.split('-')[0];
-      const finalArticle = article.toLowerCase();
-      const url = `https://github.com/WumpusPrime/The-Unofficial-Discord-Wiki/blob/master/${lang}/${finalArticle}.md`;
-      const returnArticle = `https://discordia.me/${lang}/${finalArticle}`;
+      const pages = await fetch(`https://api.github.com/repos/DiscordiaWiki/wiki/contents/${locale.split('-')[0]}`);
+      const json = await pages.json();
 
-      await fetch(url).then(res => {
-        if (res.status !== 200) {
-          message.buildEmbed()
-            .setColor(0x99AAB5)
-            .setTitle('Invalid Article')
-            .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!`)
-            .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
-            .send();
-          message.delete({ timeout: 5000 });
-        } else {
-          message.buildEmbed()
-            .setColor(0x4A90E2)
-            .setTitle('Your Requested Article')
-            .setDescription(`${articleFound.replace('<article>', article).replace('<link>', returnArticle).replace('<languages>', locale).replace('<wiki>', '[here](https://discord.gg/ZRJ9Ghh)')}`)
-            .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
-            .send();
-          message.delete({ timeout: 5000 });
-        }
-      });
+      const Fuse = new fuse(json, options);
+      const regex = /^(.+)\.md$/;
+
+      let search = Fuse.search(article);
+      search = search.length ? search[0].match(regex)[1] : 'No results.';
+
+      if (search === 'No results.') {
+        message.buildEmbed()
+          .setColor(0x4A90E2)
+          .setTitle('Invalid Article')
+          .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)`)
+          .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
+          .send();
+        message.delete({ timeout: 5000 });
+      }
+
+      const url = `https://discordia.me/${locale.split('-')[0]}/${search}`;
+
+      message.buildEmbed()
+        .setColor(0x4A90E2)
+        .setTitle('Your Requested Article')
+        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`wikibot, language set <random language>\``)
+        .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
+        .send();
+      message.delete({ timeout: 5000 });
     } else {
-      const finalArticle = article.toLowerCase();
-      const url = `https://github.com/WumpusPrime/The-Unofficial-Discord-Wiki/blob/master/${finalArticle}.md`;
-      const returnArticle = `https://discordia.me/${finalArticle}`;
+      const pages = await fetch('https://api.github.com/repos/DiscordiaWiki/wiki/contents');
+      const json = await pages.json();
 
-      await fetch(url).then(res => {
-        if (res.status !== 200) {
-          message.buildEmbed()
-            .setColor(0x99AAB5)
-            .setTitle('Invalid Article')
-            .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!`)
-            .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
-            .send();
-          message.delete({ timeout: 5000 });
-        } else {
-          message.buildEmbed()
-            .setColor(0x4A90E2)
-            .setTitle('Your Requested Article')
-            .setDescription(`The article **${article}** can be found at ${returnArticle}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`${this.client.settings.get(message.guild.id).prefix}language set fr-FR\`.`)
-            .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
-            .send();
-          message.delete({ timeout: 5000 });
-        }
-      });
+      const Fuse = new fuse(json, options);
+      const regex = /^(.+)\.md$/;
+
+      let search = Fuse.search(article);
+      search = search.length ? search[0].match(regex)[1] : 'No results.';
+
+      console.log(search);
+
+      if (search === 'No results.') {
+        message.buildEmbed()
+          .setColor(0x4A90E2)
+          .setTitle('Invalid Article')
+          .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)`)
+          .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
+          .send();
+        message.delete({ timeout: 5000 });
+      }
+
+      const url = `https://discordia.me/${search}`;
+
+      message.buildEmbed()
+        .setColor(0x4A90E2)
+        .setTitle('Your Requested Article')
+        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`wikibot, language set <random language>\``)
+        .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
+        .send();
+      message.delete({ timeout: 5000 });
     }
   }
 }
