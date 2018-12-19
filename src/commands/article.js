@@ -51,7 +51,7 @@ class Article extends Command {
           .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)`)
           .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
           .send();
-        message.delete({ timeout: 5000 });
+        return await message.delete({ timeout: 5000 });
       }
 
       const url = `https://discordia.me/${locale.split('-')[0]}/${search}`;
@@ -82,7 +82,7 @@ class Article extends Command {
           .setDescription(`The article **${article}** doesn't exist. Please check your spelling or check \`?articles\` to make sure it's a valid article.\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)`)
           .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
           .send();
-        message.delete({ timeout: 5000 });
+        return await message.delete({ timeout: 5000 });
       }
 
       const url = `https://discordia.me/${search}`;
