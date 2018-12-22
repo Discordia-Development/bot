@@ -36,7 +36,6 @@ class Servers extends Command {
       .setTimestamp()
       .setColor(0x4A90E2)
       .send();
-    await message.delete({ timeout: 5000 });
   }
 }
 

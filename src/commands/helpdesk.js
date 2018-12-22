@@ -24,7 +24,6 @@ class Helpdesk extends Command {
         .setColor(0x99AAB5)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
-      await message.delete({ timeout: 5000 });
     }
     
     const query2 = match[1];
@@ -50,7 +49,6 @@ class Helpdesk extends Command {
             .setColor(0x4A90E2)
             .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
             .send();
-          await message.delete({ timeout: 5000 });
         } 
 
         const embed = new MessageEmbed()
@@ -59,7 +57,6 @@ class Helpdesk extends Command {
           .setColor(0x4A90E2)
           .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png');
         message.channel.send({ embed });
-        await message.delete({ timeout: 5000 });
 
         await this.client.redis.set(query, list);
       });
@@ -70,7 +67,6 @@ class Helpdesk extends Command {
         .setColor(0x4A90E2)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png');
       message.channel.send({ embed });
-      await message.delete({ timeout: 5000 });
     }
   }
 }

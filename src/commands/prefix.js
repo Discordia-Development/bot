@@ -19,7 +19,6 @@ class Prefix extends Command {
       message.channel.startTyping();
       const response = await this.client.awaitReply(message, 'Would you like to reset the prefix or set a new prefix?');
       message.channel.stopTyping();
-      await message.delete();
 
       if (newPrefix.includes(response)) {
         const res = await this.client.awaitReply(message, 'What would you like the new prefix to be?');
@@ -27,14 +26,11 @@ class Prefix extends Command {
         
         this.client.settings.set(message.guild.id, settings);
         await message.reply(`I've set the prefix to \`${res}\``);
-      } else 
-
-      if (resetPrefix.includes(response)) {
+      } else if (resetPrefix.includes(response)) {
         settings[key] = 'wikibot, ';
         
         this.client.settings.set(message.guild.id, settings);
         await message.reply('I\'ve reset the prefix to `wikibot, `.');
-        await message.delete({ timeout: 5000 });
       }
     }
   }
