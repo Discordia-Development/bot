@@ -7,7 +7,9 @@ const matchAll = require('../util/matchAll');
 class Article extends Command {
   constructor(client) {
     super(client, {
-      name: 'article'
+      name: 'article',
+      description: 'Look up an article on the Wiki.',
+      category: 'Main'
     });
   }
 

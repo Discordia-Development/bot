@@ -5,7 +5,8 @@ class About extends Command {
   constructor(client) {
     super(client, {
       name: 'about',
-      description: 'Display information about WikiBot'
+      description: 'Display information about WikiBot.',
+      category: 'System'
     });
   }
 

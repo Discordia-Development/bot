@@ -5,7 +5,9 @@ class Servers extends Command {
   constructor(client) {
     super(client, {
       name: 'servers',
-      aliases: ['server']
+      aliases: ['server'],
+      description: 'Display a list of helpful Discord servers.',
+      category: 'Main'
     });
   }
 

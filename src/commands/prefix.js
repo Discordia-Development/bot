@@ -4,7 +4,9 @@ class Prefix extends Command {
   constructor(client) {
     super(client, {
       name: 'prefix',
-      permLevel: 'Administrator'
+      permLevel: 'Administrator',
+      description: 'Set the bot\'s command prefix.',
+      category: 'Administrative'
     });
   }
 

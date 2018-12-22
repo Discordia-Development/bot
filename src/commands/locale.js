@@ -3,7 +3,9 @@ const Command = require('../lib/structures/Command');
 class Locale extends Command {
   constructor(client) {
     super(client, {
-      name: 'locale'
+      name: 'locale',
+      description: 'Set your language.',
+      category: 'System'
     });
   }
 

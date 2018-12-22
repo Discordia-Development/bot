@@ -6,7 +6,8 @@ class Ping extends Command {
       name: 'ping',
       description: 'Latency and API response times.',
       usage: 'ping',
-      aliases: ['pong']
+      aliases: ['pong'],
+      category: 'System'
     });
   }
 

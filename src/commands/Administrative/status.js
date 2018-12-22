@@ -4,7 +4,9 @@ class Status extends Command {
   constructor(client) {
     super(client, {
       name: 'status',
-      permLevel: 'Bot Admin'
+      permLevel: 'Bot Admin',
+      description: 'Set the bot\'s presence status.',
+      category: 'Administrative'
     });
   }
 

@@ -9,7 +9,9 @@ const requests = new Map();
 class Helpdesk extends Command {
   constructor(client) {
     super(client, {
-      name: 'helpdesk'
+      name: 'helpdesk',
+      description: 'Search for an article in Discord\'s Helpdesk.',
+      category: 'Main'
     });
   }
 
