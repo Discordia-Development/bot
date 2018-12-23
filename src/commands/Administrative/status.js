@@ -12,9 +12,12 @@ class Status extends Command {
   }
 
   async run(message, args, level) {
-    const oldPresence = Util.escapeMarkdown(this.client.user.presence.activity.name);
+    const oldPresence = this.client.user.presence.activity ? Util.escapeMarkdown(this.client.user.presence.activity.name) : null;
     await this.client.user.setPresence({ activity: { name: `${args.join(' ')}` } });
-    message.reply(`I've set my status from \`${oldPresence}\`to \`${Util.escapeMarkdown(args.join(' '))}\`.`);
+    if (oldPresence)
+      message.reply(`I've set my status from \`${oldPresence}\` to \`${Util.escapeMarkdown(args.join(' '))}\`.`);
+    else
+      message.reply(`I've set my status to \`${Util.escapeMarkdown(args.join(' '))}\`.`);
   }
 }
 
