@@ -1,5 +1,5 @@
 const Command = require('../../lib/structures/Command');
-const { Util } = require('discord.js')
+const { Util } = require('discord.js');
 
 class Status extends Command {
   constructor(client) {
