@@ -12,7 +12,7 @@ class Status extends Command {
   }
 
   async run(message, args, level) {
-    const oldPresence = Util.escapeMarkdown(client.user.presence.activity.name);
+    const oldPresence = Util.escapeMarkdown(this.client.user.presence.activity.name);
     await this.client.user.setPresence({ activity: { name: `${args.join(' ')}` } });
     message.reply(`I've set my status from \`${oldPresence}\`to \`${Util.escapeMarkdown(args.join(' '))}\`.`);
   }
