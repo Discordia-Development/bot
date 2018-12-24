@@ -69,6 +69,31 @@
       "shortcode": "nl",
       "longcode": "nl-NL",
       "name": "Dutch"
+    },
+    "id": {
+      "shortcode": "id",
+      "longcode": "id-ID",
+      "name": "Indonesian"
+    },
+    "ko": {
+      "shortcode": "ko",
+      "longcode": "ko-KO",
+      "name": "Korean"
+    },
+    "de": {
+      "shortcode": "de",
+      "longcode": "de-DE",
+      "name": "German"
+    },
+    "ja": {
+      "shortcode": "ja",
+      "longcode": "ja-JA",
+      "name": "Japanese"
+    },
+    "pl": {
+      "shortcode": "pl",
+      "longcode": "pl-PL",
+      "name": "Polish"
     }
   }
 }
