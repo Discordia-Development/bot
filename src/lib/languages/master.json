@@ -1,99 +1,97 @@
 {
-  "locales": {
-    "en": {
-      "shortcode": "en",
-      "longcode": "en-US",
-      "name": "English"
-    },
-    "fr": {
-      "shortcode": "fr",
-      "longcode": "fr-FR",
-      "name": "French"
-    },
-    "da": {
-      "shortcode": "da",
-      "longcode": "da-DK",
-      "name": "Danish"
-    },
-    "lt": {
-      "shortcode": "lt",
-      "longcode": "lt-LT",
-      "name": "Lithuanian"
-    },
-    "pt": {
-      "shortcode": "pt",
-      "longcode": "pt-BR",
-      "name": "Portuguese"
-    },
-    "ru": {
-      "shortcode": "ru",
-      "longcode": "ru-RU",
-      "name": "Russian"
-    },
-    "es": {
-      "shortcode": "es",
-      "longcode": "es-ES",
-      "name": "Spanish"
-    },
-    "sv": {
-      "shortcode": "sv",
-      "longcode": "sv-SE",
-      "name": "Swedish"
-    },
-    "ro": {
-      "shortcode": "ro",
-      "longcode": "ro-RO",
-      "name": "Romanian"
-    },
-    "cz": {
-      "shortcode": "cz",
-      "longcode": "cz-CZ",
-      "name": "Czech"
-    },
-    "hu": {
-      "shortcode": "hu",
-      "longcode": "hu-HU",
-      "name": "Italian"
-    },
-    "it": {
-      "shortcode": "it",
-      "longcode": "it-IT",
-      "name": "Italian"
-    },
-    "sk": {
-      "shortcode": "sk",
-      "longcode": "sk-SK",
-      "name": "Slovakian"
-    },
-    "nl": {
-      "shortcode": "nl",
-      "longcode": "nl-NL",
-      "name": "Dutch"
-    },
-    "id": {
-      "shortcode": "id",
-      "longcode": "id-ID",
-      "name": "Indonesian"
-    },
-    "ko": {
-      "shortcode": "ko",
-      "longcode": "ko-KO",
-      "name": "Korean"
-    },
-    "de": {
-      "shortcode": "de",
-      "longcode": "de-DE",
-      "name": "German"
-    },
-    "ja": {
-      "shortcode": "ja",
-      "longcode": "ja-JA",
-      "name": "Japanese"
-    },
-    "pl": {
-      "shortcode": "pl",
-      "longcode": "pl-PL",
-      "name": "Polish"
-    }
+  "en": {
+    "shortcode": "en",
+    "longcode": "en-US",
+    "name": "English"
+  },
+  "fr": {
+    "shortcode": "fr",
+    "longcode": "fr-FR",
+    "name": "French"
+  },
+  "da": {
+    "shortcode": "da",
+    "longcode": "da-DK",
+    "name": "Danish"
+  },
+  "lt": {
+    "shortcode": "lt",
+    "longcode": "lt-LT",
+    "name": "Lithuanian"
+  },
+  "pt": {
+    "shortcode": "pt",
+    "longcode": "pt-BR",
+    "name": "Portuguese"
+  },
+  "ru": {
+    "shortcode": "ru",
+    "longcode": "ru-RU",
+    "name": "Russian"
+  },
+  "es": {
+    "shortcode": "es",
+    "longcode": "es-ES",
+    "name": "Spanish"
+  },
+  "sv": {
+    "shortcode": "sv",
+    "longcode": "sv-SE",
+    "name": "Swedish"
+  },
+  "ro": {
+    "shortcode": "ro",
+    "longcode": "ro-RO",
+    "name": "Romanian"
+  },
+  "cz": {
+    "shortcode": "cz",
+    "longcode": "cz-CZ",
+    "name": "Czech"
+  },
+  "hu": {
+    "shortcode": "hu",
+    "longcode": "hu-HU",
+    "name": "Italian"
+  },
+  "it": {
+    "shortcode": "it",
+    "longcode": "it-IT",
+    "name": "Italian"
+  },
+  "sk": {
+    "shortcode": "sk",
+    "longcode": "sk-SK",
+    "name": "Slovakian"
+  },
+  "nl": {
+    "shortcode": "nl",
+    "longcode": "nl-NL",
+    "name": "Dutch"
+  },
+  "id": {
+    "shortcode": "id",
+    "longcode": "id-ID",
+    "name": "Indonesian"
+  },
+  "ko": {
+    "shortcode": "ko",
+    "longcode": "ko-KO",
+    "name": "Korean"
+  },
+  "de": {
+    "shortcode": "de",
+    "longcode": "de-DE",
+    "name": "German"
+  },
+  "ja": {
+    "shortcode": "ja",
+    "longcode": "ja-JA",
+    "name": "Japanese"
+  },
+  "pl": {
+    "shortcode": "pl",
+    "longcode": "pl-PL",
+    "name": "Polish"
   }
 }
