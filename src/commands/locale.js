@@ -1,5 +1,4 @@
 const Command = require('../lib/structures/Command');
-const fs = require('fs-nextra');
 
 class Locale extends Command {
   constructor(client) {
