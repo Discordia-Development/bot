@@ -21,7 +21,7 @@ require('./modules/Prototypes.js');
 class Wikibot extends Client {
   constructor(options) {
     super(options);
-    Sentry.init({ dsn: 'https://2645fe786fa34611b69b1b411b5cbcaa@sentry.io/1305755' });
+    Sentry.init({ dsn: 'https://4407a20c90084cb1b6b9aa177b29c937@sentry.io/241152' });
     
     this.config = require('./config.js');
     
