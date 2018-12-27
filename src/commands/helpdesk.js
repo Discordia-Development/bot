@@ -45,7 +45,7 @@ class Helpdesk extends Command {
         const list = top.map(r => `» [${r.title}](${r.html_url})`).join('\n');
 
         if (!top.length) {
-          message.buildEmbed()
+          return message.buildEmbed()
             .setTitle('Discord Helpdesk: No Results')
             .setDescription(`No results came back from the query **${query.length > 40 ? query.substring(0, 36) + '...' : query}**.\n\nCan't find what you're looking for? Try tweeting [@discordapp](https://twitter.com/discordapp) or emailing [support@discordapp.com](https://support.discordapp.com/hc/en-us/requests/new)!`)
             .setColor(0x4A90E2)
