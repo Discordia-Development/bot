@@ -22,7 +22,7 @@ class Helpdesk extends Command {
     if (!match) {
       message.buildEmbed()
         .setTitle('Invalid Query')
-        .setDescription('Please provide a valid search query to search on the Helpdesk. `wikibot, helpdesk <query>`')
+        .setDescription('Please provide a valid search query to search on the Helpdesk. The default command is `?helpdesk <query>` if you haven\'t changed your prefix.')
         .setColor(0x99AAB5)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();

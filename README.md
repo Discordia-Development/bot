@@ -38,3 +38,5 @@ sudo nano src/config.js
 ```
 node .
 ```
+
+You're all set!

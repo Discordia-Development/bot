@@ -59,7 +59,7 @@ class Article extends Command {
       return message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Your Requested Article')
-        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`wikibot, language set <random language>\``)
+        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`?locale <random language>\``)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
     } else {
@@ -88,7 +88,7 @@ class Article extends Command {
       return message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Your Requested Article')
-        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`wikibot, language set <random language>\``)
+        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`?locale <random language>\``)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
     }
