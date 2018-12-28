@@ -30,10 +30,10 @@ class Article extends Command {
       const cached = await this.client.redis.get('popularArticles');
       let pageList;
       if (!cached) {
-        const articles = await popularArticles();
+        const articles = popularArticles();
         pageList = articles.map(async a => {
           const path = a.path.slice(1);
-          const { name } = this.client.articleManager.load(this.client, path);
+          const { name } = this.client.articleManager.load(client, path);
           return `[${name}](https://discordia.me/${path})`;
         }).join('\n');
         this.client.redis.setex('popularArticles', 86400, pageList);
@@ -98,7 +98,7 @@ class Article extends Command {
       }
 
       const url = `https://discordia.me/${search}`;
-      const { name } = this.client.articleManager.load(this.client, search);
+      const { name } = this.client.articleManager.load(client, search);
 
       return message.buildEmbed()
         .setColor(0x4A90E2)
