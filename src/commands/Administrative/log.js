@@ -4,7 +4,9 @@ const exec = require('child_process').exec;
 class Log extends Command {
   constructor(client) {
     super(client, {
-      name: 'log'
+      name: 'log',
+      permLevel: 'Bot Admin',
+      category: 'Administrative'
     });
   }
 
