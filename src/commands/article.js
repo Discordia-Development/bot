@@ -37,6 +37,7 @@ class Article extends Command {
           const { name } = await this.client.articleManager.load(this.client, path);
           _pageList.push(`[${name}](https://discordia.me/${path})`);
         }
+        pageList = _pageList;
         this.client.redis.setex('popularArticles', 86400, pageList.join('\n'));
       } else {
         pageList = cached;
