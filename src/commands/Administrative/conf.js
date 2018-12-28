@@ -18,18 +18,18 @@ class Conf extends Command {
       case 'prefix': {
         if (args[1] && args[2]) {
           if (args[1] === 'add') {
-            if (settings.prefixes.includes(args[2])) {
+            if (!settings.prefixes.includes(args[2])) {
               settings.prefixes.push(args[2]);
               message.reply(`I've added this prefix: ${args[2]}`);
             } else {
               message.reply('This prefix already exists.');
             }
           } else if (args[1] === 'remove') {
-            if (!settings.prefixes.includes(args[2])) {
+            if ([this.client.user.toString(), `<@!${this.client.user.id}`].includes(args[2])) {
+              message.reply('This prefix cannot be removed.');
+            } else if (!settings.prefixes.includes(args[2])) {
               delete settings.prefixes[settings.prefixes.indexOf(args[2])];
               message.reply(`I've removed this prefix: ${args[2]}`);
-            } else if ([this.client.user.toString(), `<@!${this.client.user.id}`].includes(args[2])) {
-              message.reply('This prefix cannot be removed.');
             } else {
               message.reply('This prefix doesn\'t exist.');
             }
