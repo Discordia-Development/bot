@@ -9,7 +9,7 @@ class ArticleManager {
     if (!cached) {
       const res = await fetch(url(path));
       const content = await res.text();
-      const name = content.match(/^# (.+)/m);
+      const name = content.match(/^<!-- TITLE: (.+) -->/);
 
       const obj = {
         path,
