@@ -17,7 +17,11 @@ class Article extends Command {
   async run(message, args, level) {
     const options = {
       id: 'name',
-      keys: ['name']
+      keys: ['name'],
+      shouldSort: true,
+      threshold: 0.5,
+      location: 10,
+      distance: 100
     };
 
     const article = args.join(' ');
@@ -39,8 +43,9 @@ class Article extends Command {
     if (locale !== 'en-US') {
       const pages = await fetch(`https://api.github.com/repos/DiscordiaWiki/wiki/contents/${locale.split('-')[0]}`);
       const json = await pages.json();
+      const list = json.map(p => ({ ...p, name: p.name.slice(0, -3) }));
 
-      const Fuse = new fuse(json, options);
+      const Fuse = new fuse(list, options);
       const regex = /^(.+)\.md$/;
 
       let search = Fuse.search(article);
@@ -66,8 +71,9 @@ class Article extends Command {
     } else {
       const pages = await fetch('https://api.github.com/repos/DiscordiaWiki/wiki/contents');
       const json = await pages.json();
+      const list = json.map(p => ({ ...p, name: p.name.slice(0, -3) }));
 
-      const Fuse = new fuse(json, options);
+      const Fuse = new fuse(list, options);
       const regex = /^(.+)\.md$/;
 
       let search = Fuse.search(article);
