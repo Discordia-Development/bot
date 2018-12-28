@@ -1,6 +1,7 @@
 # Files
 src/config.js
 src/.env
+src/jwt.keys.json
 src/commands/Administrative/trello.js
 
 # Folders

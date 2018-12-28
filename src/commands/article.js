@@ -2,7 +2,7 @@ const Command = require('../lib/structures/Command');
 const fetch = require('node-fetch');
 const fuse = require('fuse.js');
 
-const matchAll = require('../util/matchAll');
+const popularArticles = require('../util/popularArticles');
 
 class Article extends Command {
   constructor(client) {
@@ -26,14 +26,25 @@ class Article extends Command {
 
     const article = args.join(' ');
 
-    const data = await this.client.articleManager.data;
-    const pageList = await matchAll(data, /\*\s\[([a-zA-Z0-9_-\s]+)\]\(\/([a-zA-Z0-9_-]+)\)(?:\s+<!--\s*(.+)\s*-->)?/gi);
-
     if (!article) {
+      const cached = await this.client.redis.get('popularArticles');
+      let pageList;
+      if (!cached) {
+        const articles = await popularArticles();
+        pageList = articles.map(async a => {
+          const path = a.path.slice(1);
+          const { name } = await this.client.articleManager.load(path);
+          return `[${name}](https://discordia.me/${path})`;
+        }).join('\n');
+        this.client.redis.setex('popularArticles', 86400, pageList);
+      } else {
+        pageList = cached;
+      }
+
       return message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Popular Articles')
-        .setDescription(pageList.map(a => `[${a[1]}](https://discordia.me/${a[2]})`).slice(0, 5).join('\n') + '\n\nCan\'t find what you\'re looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!')
+        .setDescription(`${pageList}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!`)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
     }
@@ -77,8 +88,6 @@ class Article extends Command {
       let search = Fuse.search(article);
       search = search.length ? search[0] : 'No results.';
 
-      console.log(search);
-
       if (search === 'No results.') {
         return message.buildEmbed()
           .setColor(0x4A90E2)
@@ -89,11 +98,12 @@ class Article extends Command {
       }
 
       const url = `https://discordia.me/${search}`;
+      const { name } = await this.client.articleManager.load(search);
 
       return message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Your Requested Article')
-        .setDescription(`The article **${article}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`?locale <random language>\``)
+        .setDescription(`The article **${name}** can be found at ${url}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!\n\nNeed a different language? Try running \`?locale <random language>\``)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
     }
