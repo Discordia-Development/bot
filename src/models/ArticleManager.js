@@ -8,7 +8,7 @@ class ArticleManager {
     const cached = await client.redis.get(key);
     if (!cached) {
       const res = await fetch(url(path));
-      const content = res.text();
+      const content = await res.text();
       const name = content.match(/^# (.+)/m);
 
       const obj = {
