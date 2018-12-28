@@ -1,6 +1,6 @@
 const Command = require('../../lib/structures/Command');
 
-class Conf extends Command {
+class Configure extends Command {
   constructor(client) {
     super(client, {
       name: 'conf',
