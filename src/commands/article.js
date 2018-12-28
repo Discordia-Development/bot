@@ -37,8 +37,8 @@ class Article extends Command {
           const { name } = await this.client.articleManager.load(this.client, path);
           _pageList.push(`[${name}](https://discordia.me/${path})`);
         }
-        pageList = _pageList;
-        this.client.redis.setex('popularArticles', 86400, pageList.join('\n'));
+        pageList = _pageList.join('\n');
+        this.client.redis.setex('popularArticles', 86400, pageList);
       } else {
         pageList = cached;
       }
@@ -46,7 +46,7 @@ class Article extends Command {
       return message.buildEmbed()
         .setColor(0x4A90E2)
         .setTitle('Popular Articles')
-        .setDescription(`${pageList.join('\n')}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!`)
+        .setDescription(`${pageList}\n\nCan't find what you're looking for? Ask a Wiki Editor [here](https://discord.gg/ZRJ9Ghh)!`)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();
     }
