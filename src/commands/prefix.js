@@ -14,7 +14,7 @@ class Prefix extends Command {
   async run(message, args) {
     const { prefixes } = this.client.settings.get(message.guild.id);
     const availablePrefixes = prefixes.map(p => `• ${p}`);
-    availablePrefixes.push(`• ${this.client.user.id}`);
+    availablePrefixes.push(`• ${this.client.user.toString()}`);
 
     return message.buildEmbed()
       .setColor(0x4A90E2)

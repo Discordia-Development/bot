@@ -1,4 +1,4 @@
-const Command = require('../lib/structures/Command');
+const Command = require('../../lib/structures/Command');
 
 class Conf extends Command {
   constructor(client) {
@@ -39,7 +39,7 @@ class Conf extends Command {
         } else {
           const { prefixes } = settings;
           const availablePrefixes = prefixes.map(p => `• ${p}`);
-          availablePrefixes.push(`• ${this.client.user.id}`);
+          availablePrefixes.push(`• ${this.client.user.toString()}`);
           message.buildEmbed()
             .setColor(0x4A90E2)
             .setTitle('Available Prefixes')
