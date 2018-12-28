@@ -20,6 +20,7 @@ class Conf extends Command {
           if (args[1] === 'add') {
             if (!settings.prefixes.includes(args[2])) {
               settings.prefixes.push(args[2]);
+              this.client.settings.set(message.guild.id, settings);
               message.reply(`I've added this prefix: ${args[2]}`);
             } else {
               message.reply('This prefix already exists.');
@@ -29,6 +30,7 @@ class Conf extends Command {
               message.reply('This prefix cannot be removed.');
             } else if (!settings.prefixes.includes(args[2])) {
               delete settings.prefixes[settings.prefixes.indexOf(args[2])];
+              this.client.settings.set(message.guild.id, settings);
               message.reply(`I've removed this prefix: ${args[2]}`);
             } else {
               message.reply('This prefix doesn\'t exist.');
