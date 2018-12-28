@@ -46,10 +46,9 @@ class Article extends Command {
       const list = json.map(p => ({ ...p, name: p.name.slice(0, -3) }));
 
       const Fuse = new fuse(list, options);
-      const regex = /^(.+)\.md$/;
 
       let search = Fuse.search(article);
-      search = search.length ? search[0].match(regex)[1] : 'No results.';
+      search = search.length ? search[0] : 'No results.';
 
       if (search === 'No results.') {
         return message.buildEmbed()
@@ -74,10 +73,9 @@ class Article extends Command {
       const list = json.map(p => ({ ...p, name: p.name.slice(0, -3) }));
 
       const Fuse = new fuse(list, options);
-      const regex = /^(.+)\.md$/;
 
       let search = Fuse.search(article);
-      search = search.length ? search[0].match(regex)[1] : 'No results.';
+      search = search.length ? search[0] : 'No results.';
 
       console.log(search);
 
