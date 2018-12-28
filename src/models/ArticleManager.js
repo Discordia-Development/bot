@@ -3,13 +3,9 @@ const fetch = require('node-fetch');
 const url = (path) => `https://raw.githubusercontent.com/WumpusPrime/wiki/master/${path}.md`;
 
 class ArticleManager {
-  constructor(client) {
-    this.client = client;
-  }
-
-  async load(path) {
+  async load(client, path) {
     const key = `article:${path}`;
-    const cached = await this.client.redis.get(key);
+    const cached = await client.redis.get(key);
     if (!cached) {
       const res = await fetch(url(path));
       const content = res.text();
@@ -21,7 +17,7 @@ class ArticleManager {
         content
       };
 
-      await this.client.redis.setex(key, 86400, JSON.stringify(obj));
+      await client.redis.setex(key, 86400, JSON.stringify(obj));
 
       return obj;
     } else {

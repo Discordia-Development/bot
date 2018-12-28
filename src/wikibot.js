@@ -29,7 +29,7 @@ class Wikibot extends Client {
     this.aliases = new Collection();
     this.redis = new Redis();
     
-    this.articleManager = new ArticleManager(client);
+    this.articleManager = new ArticleManager();
     this.languageHandler = new LanguageHandler();
 
     this.userSettings = new Enmap({ name: 'userSettings', dataDir: './src/data/users/settings' });
