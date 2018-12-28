@@ -12,7 +12,7 @@ class Prefix extends Command {
   }
 
   async run(message, args) {
-    const { prefixes } = settings;
+    const { prefixes } = this.client.settings.get(message.guild.id);
     const availablePrefixes = prefixes.map(p => `• ${p}`);
     availablePrefixes.push(`• ${this.client.user.id}`);
 
