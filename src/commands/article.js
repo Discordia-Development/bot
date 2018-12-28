@@ -30,7 +30,7 @@ class Article extends Command {
       const cached = await this.client.redis.get('popularArticles');
       let pageList;
       if (!cached) {
-        const articles = popularArticles();
+        const articles = await popularArticles();
         pageList = articles.map(async a => {
           const path = a.path.slice(1);
           const { name } = this.client.articleManager.load(this.client, path);
