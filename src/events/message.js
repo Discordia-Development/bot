@@ -33,7 +33,7 @@ module.exports = class {
     // The "level" command module argument will be deprecated in the future.
     message.author.permLevel = level;
 
-    if (level < this.client.levelCache[cmd.conf.permLevel]) return;
+    if (level < this.client.levelCache[cmd.conf.permLevel]) return message.channel.send(`You do not have permission to use this command. Your permission level is ${level} (${this.client.config.permLevels.find(l => l.level === level).name}) This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
 
     message.flags = [];
     while (args[0] && args[0][0] === '-') {
@@ -41,8 +41,6 @@ module.exports = class {
     }
 
     // If the command exists, **AND** the user has permission, run it.
-    // this.client.logger.log(`${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'cmd');
-
     this.client.log('Log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
     
     cmd.run(message, args, level);
