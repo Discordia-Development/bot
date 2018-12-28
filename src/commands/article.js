@@ -31,11 +31,11 @@ class Article extends Command {
       let pageList;
       if (!cached) {
         const articles = await popularArticles();
-        pageList = articles.map(async a => {
-          const path = a.path.slice(1);
+        for (let { path } of articles) {
+          path = path.slice(1);
           const { name } = await this.client.articleManager.load(this.client, path);
-          return `[${name}](https://discordia.me/${path})`;
-        })
+          pageList.push(`[${name}](https://discordia.me/${path})`);
+        }
         this.client.redis.setex('popularArticles', 86400, pageList.join('\n'));
       } else {
         pageList = cached;
