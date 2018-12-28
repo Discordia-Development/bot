@@ -5,7 +5,9 @@ class Locale extends Command {
     super(client, {
       name: 'locale',
       description: 'Set your language.',
-      category: 'System'
+      category: 'System',
+      usage: 'locale [language]',
+      aliases: ['lang', 'languages']
     });
   }
 

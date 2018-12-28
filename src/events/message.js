@@ -15,9 +15,19 @@ module.exports = class {
     //  and not get into a spam loop (we call that "botception").
     if (message.author.bot) return;
 
-    if (message.content.indexOf(settings.prefix) !== 0) return;
+    const mentionPrefix = new RegExp(`^<@!?${this.client.user.id}>`).exec(message.content);
 
-    const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+    let prefix;
+    if (mentionPrefix)
+      prefix = mentionPrefix[0];
+    else if (settings.prefixes.find(prefix => message.content.startsWith(prefix)))
+      prefix = settings.prefixes.find(prefix => message.content.startsWith(prefix));
+
+    if (!prefix) return;
+
+    message.prefix = prefix;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     const level = this.client.permlevel(message);

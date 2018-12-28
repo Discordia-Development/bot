@@ -11,7 +11,9 @@ class Helpdesk extends Command {
     super(client, {
       name: 'helpdesk',
       description: 'Search for an article in Discord\'s Helpdesk.',
-      category: 'Main'
+      category: 'Main',
+      usage: 'helpdesk <query>',
+      aliases: ['hd']
     });
   }
 
@@ -21,7 +23,7 @@ class Helpdesk extends Command {
     if (!query) {
       return message.buildEmbed()
         .setTitle('Invalid Query')
-        .setDescription('Please provide a valid search query to search on the Helpdesk. The default command is `?helpdesk <query>` if you haven\'t changed your prefix.')
+        .setDescription(`Please provide a valid search query to search on the Helpdesk. The usage for this command is \`${message.prefix}helpdesk <query>\`.`)
         .setColor(0x99AAB5)
         .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png')
         .send();

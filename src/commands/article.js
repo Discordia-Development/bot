@@ -9,7 +9,8 @@ class Article extends Command {
     super(client, {
       name: 'article',
       description: 'Look up an article on the Wiki.',
-      category: 'Main'
+      category: 'Main',
+      usage: 'article <name>'
     });
   }
 

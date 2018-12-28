@@ -7,7 +7,8 @@ class Status extends Command {
       name: 'status',
       permLevel: 'Bot Admin',
       description: 'Set the bot\'s presence status.',
-      category: 'Administrative'
+      category: 'Administrative',
+      usage: 'status <text>'
     });
   }
 

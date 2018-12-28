@@ -10,7 +10,7 @@ class Reboot extends Command {
       description: 'Restart the bot.',
       category: 'System',
       usage: 'reboot',
-      aliases: [],
+      aliases: ['restart', 'die'],
       permLevel: 'Bot Admin'
     });
   }

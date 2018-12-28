@@ -5,7 +5,9 @@ class Locales extends Command {
     super(client, {
       name: 'locales',
       description: 'See a list of all available locales.',
-      category: 'System'
+      category: 'System',
+      usage: 'locales',
+      aliases: ['languages']
     });
   }
 

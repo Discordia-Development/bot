@@ -7,7 +7,8 @@ class Servers extends Command {
       name: 'servers',
       aliases: ['server'],
       description: 'Display a list of helpful Discord servers.',
-      category: 'Main'
+      category: 'Main',
+      usage: 'servers'
     });
   }
 

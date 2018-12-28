@@ -6,7 +6,9 @@ class Log extends Command {
     super(client, {
       name: 'log',
       permLevel: 'Bot Admin',
-      category: 'Administrative'
+      category: 'Administrative',
+      usage: 'log',
+      description: 'Show information about the current HEAD commit.'
     });
   }
 
