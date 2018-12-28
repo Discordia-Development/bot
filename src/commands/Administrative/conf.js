@@ -1,6 +1,6 @@
 const Command = require('../../lib/structures/Command');
 
-class Configure extends Command {
+class Conf extends Command {
   constructor(client) {
     super(client, {
       name: 'conf',
@@ -70,4 +70,4 @@ class Configure extends Command {
   }
 }
 
-module.exports = Prefix;
+module.exports = Conf;
