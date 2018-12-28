@@ -17,10 +17,9 @@ class Helpdesk extends Command {
 
   async run(message, args) {
     const query = args.join(' ');
-    const match = /(?:helpdesk|hd)\s+(.+)/i.exec(message.content);
 
-    if (!match) {
-      message.buildEmbed()
+    if (!query) {
+      return message.buildEmbed()
         .setTitle('Invalid Query')
         .setDescription('Please provide a valid search query to search on the Helpdesk. The default command is `?helpdesk <query>` if you haven\'t changed your prefix.')
         .setColor(0x99AAB5)
@@ -28,8 +27,7 @@ class Helpdesk extends Command {
         .send();
     }
     
-    const query2 = match[1];
-    const encodedQuery = encodeURI(query2);
+    const encodedQuery = encodeURI(query);
 
     requests.set(message.createdTimestamp, setTimeout(() => requests.delete(message.createdTimestamp), 60000));
 
