@@ -40,7 +40,7 @@ class Eval extends Command {
         if (message.flags[0] === 'silent' || message.flags[0] === 's') {
           stopwatch.stop();
           const time = this.formatTime(syncTime, asyncTime);
-          await message.author.send(`**Output:**\n\`\`\`js\n${output}\`\`\`\n**Type:**\`\`\`${type.toLowerCase()}\`\`\`\n${time}`);
+          return await message.author.send(`**Output:**\n\`\`\`js\n${output}\`\`\`\n**Type:**\`\`\`${type.toLowerCase()}\`\`\`\n${time}`);
         }
 
         if (message.flags[0] === 'file' || message.flags[0] === 'f') {
@@ -56,7 +56,7 @@ class Eval extends Command {
           const time = this.formatTime(syncTime, asyncTime);
           const file = fs.writeFile('eval.js', output);
           await message.author.send({ file: 'eval.js' });
-          await message.author.send(`${time}`);
+          return await message.author.send(`${time}`);
         }
         
         else {
