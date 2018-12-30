@@ -8,7 +8,9 @@ module.exports = class {
   }
 
   async run(message) {
-    const settings = this.client.settings.get(message.guild.id);
+
+    const defaults = this.client.config.defaultSettings;
+    const settings = message.guild ? this.client.settings.get(message.guild.id) : defaults;
     message.settings = settings;
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
