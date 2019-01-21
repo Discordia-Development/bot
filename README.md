@@ -1,4 +1,4 @@
-### This software isn't meant for public use, this repository is used mainly for displaying changes to the end user. If you'd like to make pull requests, you're more than welcome to, however!
+### This software isn't meant to be run independently, this repository is used mainly for displaying changes to the end user. If you'd like to make pull requests, you're more than welcome to, however!
 
 For end users looking to run the bot on their public servers, please invite the public test build [here.](https://www.discordwiki.bot/invite)
 
