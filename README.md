@@ -1,3 +1,5 @@
+### This software isn't meant for public use, this repository is used mainly for displaying changes to the end user. If you'd like to make pull requests, you're more than welcome to, however!
+
 # Setup
 
 - Have Node 8.4.0 or higher installed.
