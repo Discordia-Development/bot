@@ -60,7 +60,7 @@ class Helpdesk extends Command {
           .setFooter('Discord WikiBot', 'https://cdn.discordapp.com/attachments/289177479971602432/289596862195957770/discordia_emote_1.png');
         message.channel.send({ embed });
 
-        await this.client.redis.set(query, list);
+        await this.client.redis.set(query, list, 'EX', '3600');
       });
     } else {
       const embed = new MessageEmbed()
