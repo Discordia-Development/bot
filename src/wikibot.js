@@ -29,6 +29,9 @@ class Wikibot extends Client {
     this.aliases = new Collection();
     this.redis = new Redis();
     
+    const funcs = ['get', 'set', 'del'];
+    funcs.forEach(f => this.redis[f+'Async'] = promisify(this.redis[f]).bind(this.redis));
+
     this.articleManager = new ArticleManager();
     this.languageHandler = new LanguageHandler();
 
